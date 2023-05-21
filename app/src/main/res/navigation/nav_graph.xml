@@ -13,7 +13,7 @@
 
         <action
             android:id="@+id/action_landing_to_sign_up"
-            app:destination="@id/LoginPage"/>
+            app:destination="@id/SignUpPage"/>
     </fragment>
 
     <fragment
@@ -24,7 +24,18 @@
 
         <action
             android:id="@+id/action_login_to_sign_up"
-            app:destination="@id/SecondFragment"/>
+            app:destination="@id/SignUpPage"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/SignUpPage"
+        android:name="com.example.onebeer.SignupPage"
+        android:label="Sign Up"
+        tools:layout="@layout/singup_page">
+
+        <action
+            android:id="@+id/action_sign_up_to_login"
+            app:destination="@+id/LoginPage"/>
     </fragment>
 
     <fragment
