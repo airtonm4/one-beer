@@ -49,7 +49,7 @@
             android:fontFamily="@font/inter_semibold"
             android:gravity="center_horizontal|top"
             android:text="Bem vindo ao OneBeer, seu aplicativo que auxlia na compra de sua cerveja. Temos diversas opções para o seu gosto."
-            android:textColor="#4D4242"
+            android:textColor="@color/text_gray"
             android:textSize="16sp" />
 
         <Button
@@ -57,7 +57,7 @@
             android:layout_width="170dp"
             android:layout_height="50dp"
             android:layout_marginTop="50dp"
-            android:backgroundTint="#5DAF75"
+            android:backgroundTint="@color/primary_green"
             android:fontFamily="@font/inter_medium"
             android:text="SignUp"
             android:textSize="19sp"

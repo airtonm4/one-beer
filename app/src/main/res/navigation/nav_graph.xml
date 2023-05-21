@@ -13,19 +13,20 @@
 
         <action
             android:id="@+id/action_landing_to_sign_up"
+            app:destination="@id/LoginPage"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/LoginPage"
+        android:name="com.example.onebeer.LoginPage"
+        android:label="Log In"
+        tools:layout="@layout/login_page">
+
+        <action
+            android:id="@+id/action_login_to_sign_up"
             app:destination="@id/SecondFragment"/>
     </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/FirstFragment"-->
-<!--        android:name="com.example.onebeer.FirstFragment"-->
-<!--        android:label="@string/first_fragment_label"-->
-<!--        tools:layout="@layout/fragment_first">-->
-
-<!--        <action-->
-<!--            android:id="@+id/action_FirstFragment_to_SecondFragment"-->
-<!--            app:destination="@id/SecondFragment" />-->
-<!--    </fragment>-->
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.onebeer.SecondFragment"
