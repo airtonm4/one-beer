@@ -5,5 +5,19 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.OneBeer" parent="Base.Theme.OneBeer" />
+    <style name="Theme.OneBeer" parent="Base.Theme.OneBeer">
+        <item name="toolbarStyle">@style/Widget.AppCompat.Toolbar</item>
+    </style>
+
+    <style name="Widget.AppCompat.Toolbar" parent="">
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="titleTextAppearance">@style/Toolbar.TitleText</item>
+        <item name="titleCentered">true</item>
+    </style>
+
+    <style name="Toolbar.TitleText" parent="Widget.AppCompat.Toolbar">
+        <item name="android:textSize">34sp</item>
+        <item name="android:textFontWeight">700</item>
+    </style>
 </resources>
