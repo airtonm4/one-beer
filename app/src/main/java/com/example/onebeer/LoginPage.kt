@@ -59,7 +59,7 @@ class LoginPage : Fragment() {
                         if (task.isSuccessful){
 //                            startActivity(Intent(context, HomeActivity::class.java))
                             Log.d("logInWithEmail:", "success")
-                            findNavController().navigate(R.id.action_login_to_sign_up)
+                            findNavController().navigate(R.id.action_login_to_home)
                         } else {
                             Log.d("signInWithEmail:", "not success")
                             Toast.makeText(
