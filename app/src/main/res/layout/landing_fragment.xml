@@ -14,15 +14,6 @@
         android:orientation="vertical"
         tools:context=".LandingPage">
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:fontFamily="@font/inter_semibold"-->
-<!--            android:text="OneBeer"-->
-<!--            android:textAppearance="@style/TextAppearance.AppCompat.Display1"-->
-<!--            android:textFontWeight="800" />-->
-
         <androidx.cardview.widget.CardView
             android:layout_width="340dp"
             android:layout_marginTop="50dp"

@@ -38,14 +38,4 @@
             app:destination="@+id/LoginPage"/>
     </fragment>
 
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.onebeer.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/LandingPage" />
-    </fragment>
 </navigation>
