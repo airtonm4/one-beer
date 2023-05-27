@@ -65,6 +65,7 @@ class SignupPage: Fragment() {
                             findNavController().navigate(R.id.action_sign_up_to_login)
                         } else {
                             Log.d("signInWithEmail:", "not success")
+                            Log.w("task", task.exception)
                             Toast.makeText(
                                 context,
                                 "Autentificação falhou",

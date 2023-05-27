@@ -13,15 +13,4 @@
 
     </fragment>
 
-<!--    <fragment-->
-<!--        android:id="@+id/LandingPage"-->
-<!--        android:name="com.example.onebeer.LandingPage"-->
-<!--        android:label="@string/app_name"-->
-<!--        tools:layout="@layout/landing_fragment">-->
-
-<!--        <action-->
-<!--            android:id="@+id/action_landing_to_sign_up"-->
-<!--            app:destination="@id/SignUpPage"/>-->
-<!--    </fragment>-->
-
 </navigation>

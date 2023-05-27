@@ -1,5 +1,6 @@
 package com.example.onebeer
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -57,9 +58,8 @@ class LoginPage : Fragment() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful){
-//                            startActivity(Intent(context, HomeActivity::class.java))
                             Log.d("logInWithEmail:", "success")
-                            findNavController().navigate(R.id.action_login_to_home)
+                            startActivity(Intent(context, HomeActivity::class.java))
                         } else {
                             Log.d("signInWithEmail:", "not success")
                             Toast.makeText(
