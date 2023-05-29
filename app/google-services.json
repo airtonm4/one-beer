@@ -1,36 +1,35 @@
 {
   "project_info": {
-    "project_number": "978087850634",
-    "project_id": "onebeer-42b91",
-    "storage_bucket": "onebeer-42b91.appspot.com"
+    "project_number": "956697424887",
+    "project_id": "onebeer-d6603",
+    "storage_bucket": "onebeer-d6603.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:978087850634:android:d909ccbd664edf8454b373",
+        "mobilesdk_app_id": "1:956697424887:android:de6b61776415d2b346f4f2",
         "android_client_info": {
           "package_name": "com.example.onebeer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "978087850634-jeubveqgb9rt9o1tv21dfggiufpa2ff2.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "956697424887-qc3lm4d6vjholghhpbgtu0frrb6h37to.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.onebeer",
+            "certificate_hash": "0443d910e8b5454411f9deccb23905892f4125ed"
+          }
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB3FZ1QhJXE_aKbE6tjPwdX7BhgDQH5fbY"
+          "current_key": "AIzaSyCD0SfCqIFEvSWB0WpZccEgIpGujQvdHa8"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "978087850634-jeubveqgb9rt9o1tv21dfggiufpa2ff2.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

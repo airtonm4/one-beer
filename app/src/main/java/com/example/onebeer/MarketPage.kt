@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.onebeer.databinding.HomePageBinding
+import com.example.onebeer.databinding.MarketPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-
-
-class HomePage: Fragment() {
-
-    private var _binding: HomePageBinding? = null
+class MarketPage: Fragment() {
+    private var _binding: MarketPageBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
 
@@ -24,7 +22,7 @@ class HomePage: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         auth = Firebase.auth
-        _binding = HomePageBinding.inflate(inflater, container, false)
+        _binding = MarketPageBinding.inflate(inflater, container, false)
         return binding.root
     }
 }

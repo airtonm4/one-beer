@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.setPadding
+import androidx.fragment.app.commit
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -28,11 +29,50 @@ class HomeActivity: AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         binding.bottomAppBar.setOnApplyWindowInsetsListener(null)
         binding.bottomAppBar.setPadding(0)
+
         setContentView(binding.root)
 
-        Log.d("Home", "Rendered home")
+        supportFragmentManager.commit {
+            val homePage = HomePage()
+            replace(R.id.container, homePage)
+        }
 
-        val navController = findNavController(R.id.nav_host_fragment_content_home)
+        binding.bottomAppBar.setOnItemSelectedListener {item ->
+            when(item.itemId){
+                R.id.home_page -> {
+                    supportFragmentManager.commit {
+                        val homePage = HomePage()
+                        replace(R.id.container, homePage)
+                    }
+                    true
+                }
+                R.id.market_page -> {
+                    supportFragmentManager.commit {
+                        val marketPage = MarketPage()
+                        replace(R.id.container, marketPage)
+                    }
+                    true
+                }
+                R.id.cart_page -> {
+                    supportFragmentManager.commit {
+                        val homePage = HomePage()
+                        replace(R.id.container, homePage)
+                    }
+                    true
+                }
+                R.id.profile_page -> {
+                    supportFragmentManager.commit {
+                        val homePage = HomePage()
+                        replace(R.id.container, homePage)
+                    }
+                    true
+                }
+                else -> false
+            }
+
+        }
+
+
 
     }
 }

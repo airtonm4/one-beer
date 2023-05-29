@@ -3,21 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/home_page"
         android:icon="@drawable/home_24"
         android:title="Home"
         android:enabled="true"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/market_page"
         android:icon="@drawable/market_24"
         android:title="Mercado"
         android:enabled="true"
         app:showAsAction="always" />
     <item
+        android:id="@+id/cart_page"
         android:icon="@drawable/cart_24"
         android:title="Carrinho"
         android:enabled="true"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/profile_page"
         android:icon="@drawable/person_24"
         android:title="Profile"
         android:enabled="true"
