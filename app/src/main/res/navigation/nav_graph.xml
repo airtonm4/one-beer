@@ -25,9 +25,6 @@
         <action
             android:id="@+id/action_login_to_sign_up"
             app:destination="@id/SignUpPage"/>
-        <action
-            android:id="@+id/action_login_to_home"
-            app:destination="@id/home_graph"/>
     </fragment>
 
     <fragment
@@ -40,7 +37,5 @@
             android:id="@+id/action_sign_up_to_login"
             app:destination="@+id/LoginPage"/>
     </fragment>
-
-    <include app:graph="@navigation/home_nav_graph"/>
 
 </navigation>

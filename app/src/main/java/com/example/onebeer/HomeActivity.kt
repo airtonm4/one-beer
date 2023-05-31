@@ -72,7 +72,5 @@ class HomeActivity: AppCompatActivity() {
 
         }
 
-
-
     }
 }
