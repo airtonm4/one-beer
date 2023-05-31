@@ -62,8 +62,8 @@ class HomeActivity: AppCompatActivity() {
                 }
                 R.id.profile_page -> {
                     supportFragmentManager.commit {
-                        val homePage = HomePage()
-                        replace(R.id.container, homePage)
+                        val profilePage = ProfilePage()
+                        replace(R.id.container, profilePage)
                     }
                     true
                 }
