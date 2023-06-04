@@ -3,39 +3,91 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:paddingBottom="100dp"
     android:gravity="center_horizontal">
 
-    <EditText
-        android:id="@+id/login_email"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="100dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        android:textAlignment="textStart"
-        android:textColorHint="@color/primary_green"
-        android:background="@drawable/input_stroke"
-        android:paddingStart="20dp"
-        android:fontFamily="@font/inter_medium"
-        android:textSize="18sp"
-        tools:ignore="RtlSymmetry" />
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:buttonGravity="center_vertical"
+        style="@style/Widget.AppCompat.Toolbar"
+        app:titleTextColor="@color/black"
+        />
 
-    <Button
-        android:id="@+id/button_login"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="150dp"
-        android:backgroundTint="@color/primary_green"
-        android:fontFamily="@font/inter_medium"
-        android:text="Log In"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toTopOf="@id/textview_first"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="380dp"
+        android:layout_height="450dp"
+        android:layout_marginTop="30dp"
+        app:cardCornerRadius="18sp"
+        app:cardBackgroundColor="#F0F0F0"
+        app:strokeColor="#B3B3B3">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@mipmap/baden_ipa_foreground" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome da cerveja"
+                android:layout_marginTop="10dp"
+                android:textSize="32sp"
+                android:fontFamily="@font/inter_medium"/>
 
+            <TextView
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_light"
+                android:gravity="center_horizontal|top"
+                android:text="Cerveja tipica de tal lugar, que apresenta um otimo amagor para quem aprecia cervejas amargas."
+                android:textSize="20sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/inter"
+                android:textSize="25sp"
+                android:text="R$ 22,00"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingBottom="30dp"
+            android:text="Cerveja que achamos que você gostaria"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_bold"
+            android:textSize="28sp"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/beer_carousel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </LinearLayout>

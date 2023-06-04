@@ -37,8 +37,6 @@ class SignupPage: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.singUpPassword.setOn
-
         binding.buttonSignup.setOnClickListener{
             val name = binding.singUpName.text.toString()
             val email = binding.signUpEmail.text.toString()
