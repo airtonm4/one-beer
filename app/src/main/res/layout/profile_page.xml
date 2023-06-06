@@ -80,7 +80,6 @@
             android:layout_marginTop="18dp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center_horizontal|top"
-            android:text="colocar pelo firebase"
             android:textColor="@color/highlight_text_gray"
             android:textSize="25sp" />
 
@@ -177,6 +176,7 @@
             android:background="@color/black" />
 
         </LinearLayout>
+
 
         <Button
             android:id="@+id/butaoLogout"
