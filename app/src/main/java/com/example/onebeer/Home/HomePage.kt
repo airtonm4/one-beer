@@ -1,4 +1,4 @@
-package com.example.onebeer
+package com.example.onebeer.Home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.onebeer.BeerCarousel.Beer
+import com.example.onebeer.BeerCarousel.CarouselAdapter
 import com.example.onebeer.databinding.HomePageBinding
-import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

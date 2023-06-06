@@ -1,4 +1,4 @@
-package com.example.onebeer
+package com.example.onebeer.Market
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.example.onebeer
+package com.example.onebeer.Profile
 
 import androidx.fragment.app.Fragment
 import android.os.Bundle

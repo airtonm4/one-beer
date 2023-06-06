@@ -1,16 +1,14 @@
-package com.example.onebeer
+package com.example.onebeer.Home
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.setPadding
 import androidx.fragment.app.commit
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
+import com.example.onebeer.Market.MarketPage
+import com.example.onebeer.Profile.ProfilePage
+import com.example.onebeer.R
 import com.example.onebeer.databinding.ActivityHomeBinding
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

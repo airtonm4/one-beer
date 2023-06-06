@@ -1,4 +1,4 @@
-package com.example.onebeer
+package com.example.onebeer.BeerCarousel
 
 import android.media.Image
 

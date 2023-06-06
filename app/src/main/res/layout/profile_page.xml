@@ -12,7 +12,7 @@
         android:layout_centerVertical="true"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:context=".LandingPage">
+        tools:context=".SignIn.LandingPage">
 
 
 
@@ -22,7 +22,7 @@
             android:background="#EDBA40"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            tools:context=".LandingPage">
+            tools:context=".SignIn.LandingPage">
 
 
 
@@ -103,7 +103,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
             android:textColor="@color/black"
             android:textSize="13dp"
-            app:iconPadding="20dp" />/>
+            app:iconPadding="20dp" />
         <View
             android:id="@+id/divider1"
             android:layout_width="match_parent"
@@ -126,7 +126,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
             android:textColor="@color/black"
             android:textSize="13dp"
-            app:iconPadding="20dp" />/>
+            app:iconPadding="20dp" />
 
         <View
             android:id="@+id/divider2"
