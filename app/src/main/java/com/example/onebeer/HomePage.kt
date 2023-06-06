@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.onebeer.databinding.HomePageBinding
-import com.google.android.material.carousel.CarouselLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -27,12 +26,12 @@ class HomePage: Fragment() {
         auth = Firebase.auth
         _binding = HomePageBinding.inflate(inflater, container, false)
 
-        val llm = LinearLayoutManager(context)
-        llm.orientation = LinearLayoutManager.HORIZONTAL
+        val carouselManager = LinearLayoutManager(context)
+        carouselManager.orientation = LinearLayoutManager.HORIZONTAL
 
         val mockBeers: List<Beer> = listOf(Beer("Baden", "R$ 20,00"), Beer("Ipa", "R$ 20,00"), Beer("Cerveja", "R$ 20,00"), Beer("Baden", "R$ 20,00"))
         binding.beerCarousel.adapter = CarouselAdapter(mockBeers)
-        binding.beerCarousel.layoutManager = llm
+        binding.beerCarousel.layoutManager = carouselManager
 
         return binding.root
     }
