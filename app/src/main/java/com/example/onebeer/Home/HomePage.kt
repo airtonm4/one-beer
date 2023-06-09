@@ -31,7 +31,14 @@ class HomePage: Fragment() {
         val carouselManager = LinearLayoutManager(context)
         carouselManager.orientation = LinearLayoutManager.HORIZONTAL
 
-        val mockBeers: List<Beer> = listOf(Beer("Baden", "R$ 20,00"), Beer("Ipa", "R$ 20,00"), Beer("Cerveja", "R$ 20,00"), Beer("Baden", "R$ 20,00"))
+        val mockBeers: List<Beer> = listOf(
+            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", ""),
+            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", ""),
+            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", ""),
+            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", ""),
+            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", ""),
+            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", "")
+        )
         binding.beerCarousel.adapter = CarouselAdapter(mockBeers)
         binding.beerCarousel.layoutManager = carouselManager
 
