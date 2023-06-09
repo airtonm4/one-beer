@@ -1,5 +1,3 @@
 package com.example.onebeer.BeerCarousel
 
-import android.media.Image
-
-class Beer (val title: String, val price: String, val ml: Number, val description: String, val style: String, val imageUrl: String)
+class Beer (val id: String, val title: String, val price: Number, val ml: String, val description: String, val style: String, val imageUrl: String)
