@@ -20,7 +20,7 @@ class CartAdapter(private val dataSet: List<Beer>): RecyclerView.Adapter<CartAda
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dataSet = dataSet[position]
         holder.nome_cerveja.text = dataSet.title
-        holder.price.text = dataSet.price
+        holder.price.text = dataSet.price.toString()
         //passar a imagem aqui
     }
 

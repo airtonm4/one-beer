@@ -31,12 +31,12 @@ class CartPage : Fragment(){
         recyclerManager.orientation = LinearLayoutManager.VERTICAL
 
         val mockBeers: List<Beer> = listOf(
-            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", ""),
-            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", ""),
-            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", ""),
-            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", ""),
-            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", ""),
-            Beer("Baden", "R$ 20,00", 300, "aaaaa", "IPA", "")
+            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", ""),
+            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", ""),
+            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", ""),
+            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", ""),
+            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", ""),
+            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", "")
         )
         binding.beerRecycler.adapter = CartAdapter(mockBeers)
         binding.beerRecycler.layoutManager = recyclerManager
