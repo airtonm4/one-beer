@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.view.setPadding
 import androidx.fragment.app.commit
+import com.example.onebeer.Cart.CartPage
 import com.example.onebeer.Market.MarketPage
 import com.example.onebeer.Profile.ProfilePage
 import com.example.onebeer.R
@@ -57,8 +58,8 @@ class HomeActivity: AppCompatActivity() {
                 }
                 R.id.cart_page -> {
                     supportFragmentManager.commit {
-                        val homePage = HomePage()
-                        replace(R.id.container, homePage)
+                        val cartPage = CartPage()
+                        replace(R.id.container, cartPage)
                     }
                     true
                 }
