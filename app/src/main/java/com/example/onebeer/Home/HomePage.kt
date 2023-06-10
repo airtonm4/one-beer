@@ -34,36 +34,6 @@ class HomePage: Fragment() {
         auth = Firebase.auth
         _binding = HomePageBinding.inflate(inflater, container, false)
 
-        val db = Firebase.firestore
-        val currentUser = Firebase.auth.currentUser
-
-        val circularProgressDrawable = this.context?.let { CircularProgressDrawable(it) }
-        if (circularProgressDrawable != null) {
-            circularProgressDrawable.strokeWidth = 8f
-            circularProgressDrawable.centerRadius = 30f
-            circularProgressDrawable.start()
-            binding.cardImage.setImageDrawable(circularProgressDrawable)
-        }
-
-        db.collection("beers").
-            document("DNPRVCIn2r1utlG5ZbJe")
-            .get()
-            .addOnSuccessListener {beer ->
-                val storage = Firebase.storage.getReferenceFromUrl(beer["imageUrl"] as String)
-
-                storage.downloadUrl.addOnSuccessListener { uri ->
-                    Glide.with(this)
-                        .load(uri)
-                        .placeholder(circularProgressDrawable)
-                        .into(binding.cardImage)
-                }
-
-                binding.cardTitle.text = "Cerveja ${beer["title"]}"
-                binding.cardDescription.text = beer["description"] as String
-                binding.cardMl.text = beer["ml"] as String
-                binding.cardPrice.text = "R$ ${beer["price"]}"
-            }
-
 
         val carouselManager = LinearLayoutManager(context)
         carouselManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -76,5 +46,56 @@ class HomePage: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val db = Firebase.firestore
+
+        val circularProgressDrawable = this.context?.let { CircularProgressDrawable(it) }
+        if (circularProgressDrawable != null) {
+            circularProgressDrawable.strokeWidth = 8f
+            circularProgressDrawable.centerRadius = 30f
+            circularProgressDrawable.start()
+            binding.cardImage.setImageDrawable(circularProgressDrawable)
+        }
+
+        db.collection("beers")
+            .document("DNPRVCIn2r1utlG5ZbJe")
+            .get()
+            .addOnSuccessListener { beer ->
+                val storage = Firebase.storage.getReferenceFromUrl(beer["imageUrl"] as String)
+
+                storage.downloadUrl.addOnSuccessListener { uri ->
+                    context?.let {
+                        Glide.with(it)
+                            .load(uri)
+                            .placeholder(circularProgressDrawable)
+                            .into(binding.cardImage)
+                    }
+                }
+
+                binding.cardTitle.text = "Cerveja ${beer["title"]}"
+                binding.cardDescription.text = beer["description"] as String
+                binding.cardMl.text = beer["ml"] as String
+                binding.cardPrice.text = "R$ ${beer["price"]}"
+            }
+
+        db.collection("beers")
+            .limit(6)
+            .get()
+            .addOnSuccessListener { beers ->
+                val data: ArrayList<Beer> = ArrayList()
+                beers.forEach { beer ->
+                    data.add(Beer(
+                        id = beer.id,
+                        title = beer["title"] as String,
+                        price = beer["price"] as Double,
+                        ml = beer["ml"] as String,
+                        style = beer["style"] as String,
+                        description = beer["description"] as String,
+                        imageUrl = beer["imageUrl"] as String,
+                        quantity = null
+                    ))
+                }
+                binding.beerCarousel.adapter = context?.let { CarouselAdapter(data, it) }
+            }
     }
 }

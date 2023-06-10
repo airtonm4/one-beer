@@ -14,8 +14,6 @@
         android:orientation="vertical"
         tools:context=".SignIn.LandingPage">
 
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,15 +48,16 @@
 
                     <ImageView
 
-                        android:id="@+id/imageView"
+                        android:id="@+id/profile_picture"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:cropToPadding="false"
                         android:scaleType="centerCrop"
+                        android:focusable="true"
+                        android:clickable="true"
                         app:srcCompat="@mipmap/there_only_beer_left_foreground" />
                     <!-- border -->
                 </androidx.cardview.widget.CardView>
-
 
             </androidx.cardview.widget.CardView>
 

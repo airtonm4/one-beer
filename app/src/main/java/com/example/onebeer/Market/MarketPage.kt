@@ -51,11 +51,12 @@ class MarketPage: Fragment() {
                     data.add(Beer(
                         id = beer.id,
                         title = beer["title"] as String,
-                        price = beer["price"] as Number,
+                        price = beer["price"] as Double,
                         ml = beer["ml"] as String,
                         style = beer["style"] as String,
                         description = beer["description"] as String,
-                        imageUrl = beer["imageUrl"] as String
+                        imageUrl = beer["imageUrl"] as String,
+                        quantity = null
                     ))
                 }
                 binding.beerCarousel.adapter = context?.let { CarouselAdapter(data, it) }

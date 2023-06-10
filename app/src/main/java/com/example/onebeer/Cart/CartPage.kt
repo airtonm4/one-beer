@@ -1,6 +1,8 @@
 package com.example.onebeer.Cart
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.onebeer.BeerCarousel.Beer
 import com.example.onebeer.BeerCarousel.CarouselAdapter
-import com.example.onebeer.CartRecycle.CartAdapter
+import com.example.onebeer.Cart.CartRecycle.CartAdapter
 import com.example.onebeer.databinding.CartPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class CartPage : Fragment(){
@@ -30,18 +33,58 @@ class CartPage : Fragment(){
         val recyclerManager = LinearLayoutManager(context)
         recyclerManager.orientation = LinearLayoutManager.VERTICAL
 
-        val mockBeers: List<Beer> = listOf(
-            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", ""),
-            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", ""),
-            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", ""),
-            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", ""),
-            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", ""),
-            Beer("","Baden", 20.00, "300", "aaaaa", "IPA", "")
-        )
-        binding.beerRecycler.adapter = CartAdapter(mockBeers)
-        binding.beerRecycler.layoutManager = recyclerManager
+        binding.cartRecycler.layoutManager = recyclerManager
 
         return binding.root
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val db = Firebase.firestore
+
+        var total: Double = 0.0;
+
+        /**
+         * Request para pegar todos os produtos da compra.
+         */
+        db.collection("shop")
+            .whereEqualTo("userId", auth.currentUser!!.uid)
+            .get()
+            .addOnSuccessListener { shop ->
+                val data: ArrayList<Beer> = ArrayList()
+                shop.forEach { shopItem ->
+                    /**
+                     * Request para pegar todas as cervejas presentes nessa compra
+                     */
+                    Log.d("SHOP", "beerId ${shopItem["beerId"]}")
+                    db.collection("beers")
+                        .document(shopItem["beerId"] as String)
+                        .get()
+                        .addOnSuccessListener { beer ->
+                            Log.d("BEER", "DATA -> ${beer.data}")
+                            data.add(Beer(
+                                id = beer.id,
+                                title = beer["title"] as String,
+                                price = beer["price"] as Double,
+                                ml = beer["ml"] as String,
+                                style = beer["style"] as String,
+                                description = beer["description"] as String,
+                                imageUrl = beer["imageUrl"] as String,
+                                quantity = shopItem["quantity"] as Long
+                            ))
+                            Log.d("PRICE", "${beer["price"]}")
+                            Log.d("QUANTITY", "${shopItem["quantity"]}")
+                            total += beer["price"] as Double * shopItem["quantity"] as Long
+                            binding.totalPrice.text = "R$ " + "%.2f".format(total)
+                            binding.cartRecycler.adapter = context?.let { CartAdapter(data, it) }
+                        }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("[ERROR]", "Error getting beers: ", exception)
+            }
     }
 
 }
