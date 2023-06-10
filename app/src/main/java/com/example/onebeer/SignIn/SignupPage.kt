@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.onebeer.ConsultantHome.ConsultantHomeActivity
 import com.example.onebeer.Home.HomeActivity
 import com.example.onebeer.R
 import com.example.onebeer.databinding.SingupPageBinding
@@ -86,8 +87,17 @@ class SignupPage: Fragment() {
                                             displayName = name
                                         })
 
-                                        startActivity(Intent(context, HomeActivity::class.java))
-                                        Log.d("Sing Up", "User created and auth")
+                                        /**
+                                         * BYPASS TO CONSULTANT HOME
+                                         */
+                                        if (email == "airton.martins@estudante.ifgoiano.edu.br"){
+                                            startActivity(Intent(context, ConsultantHomeActivity::class.java))
+                                            Log.d("WELCOME", "Bem vindo Airton.")
+                                        } else {
+                                            startActivity(Intent(context, HomeActivity::class.java))
+                                            Log.d("Sing Up", "User created and auth")
+                                        }
+
                                     } else {
                                         Log.d("Sing Up", "User created, but login fails.")
                                         findNavController().navigate(R.id.action_sign_up_to_login)

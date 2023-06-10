@@ -33,8 +33,6 @@ class HomeActivity: AppCompatActivity() {
 
         setContentView(binding.root)
 
-        val container = binding.container
-
         supportFragmentManager.commit {
             val homePage = HomePage()
             replace(R.id.container, homePage)

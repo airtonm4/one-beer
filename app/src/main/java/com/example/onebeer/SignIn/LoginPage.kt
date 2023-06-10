@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.onebeer.ConsultantHome.ConsultantHomeActivity
 import com.example.onebeer.Home.HomeActivity
 import com.example.onebeer.R
 import com.example.onebeer.databinding.LoginPageBinding
@@ -61,7 +62,11 @@ class LoginPage : Fragment() {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful){
                             Log.d("logInWithEmail:", "success")
-                            startActivity(Intent(context, HomeActivity::class.java))
+                            if (email == "airton.martins@estudante.ifgoiano.edu.br"){
+                                startActivity(Intent(context, ConsultantHomeActivity::class.java))
+                            } else {
+                                startActivity(Intent(context, HomeActivity::class.java))
+                            }
                         } else {
                             Log.d("signInWithEmail:", "not success")
                             Toast.makeText(

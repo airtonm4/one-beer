@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.onebeer.ConsultantHome.ConsultantHomeActivity
 import com.example.onebeer.Home.HomeActivity
 import com.example.onebeer.R
 import com.example.onebeer.databinding.LandingFragmentBinding
@@ -33,7 +34,11 @@ class LandingPage : Fragment(){
         val user = auth.currentUser
 
         if (user != null) {
-            startActivity(Intent(context, HomeActivity::class.java))
+            if (user.email == "airton.martins@estudante.ifgoiano.edu.br") {
+                startActivity(Intent(context, ConsultantHomeActivity::class.java))
+            } else {
+                startActivity(Intent(context, HomeActivity::class.java))
+            }
         }
 
         _binding = LandingFragmentBinding.inflate(inflater, container, false)
