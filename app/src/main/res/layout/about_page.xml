@@ -6,10 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbarSobre"
+                android:id="@+id/about_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:buttonGravity="center_vertical"
@@ -34,7 +32,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="256dp">
-
 
         <TextView
             android:id="@+id/textViewOn"
@@ -74,9 +71,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <!-- border -->
             <ImageView
-
                 android:id="@+id/imageViewOnebeer"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
