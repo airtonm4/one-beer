@@ -6,7 +6,20 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="sobre">Este é um aplicativo escolar sobre a venda de cervejas. Todo o código feito aqui tem intuito escolar e não tem nenhum interesse comercial.
+Todas as imagens são ilustrativas, apenas para compor o material necessário do aplicativo.
 
+Obrigado por testar nosso aplicativo!!
+
+Criado por:
+Airton Martins Ferreira e Artur Martins Ferreira
+    </string>
+    <string name="lorem_ipsum_teste">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
+    volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
+    dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad
+    litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse blandit eleifend
+        diam, vel rutrum tellus vulputate quis.</string>
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
