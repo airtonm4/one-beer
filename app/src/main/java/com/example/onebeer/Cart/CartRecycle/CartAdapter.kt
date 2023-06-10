@@ -110,6 +110,12 @@ class CartAdapter(private val dataSet: ArrayList<Beer>, private val context: Con
         return dataSet.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun notifyDeleted() {
+        notifyDeleted()
+        notifyDataSetChanged()
+    }
+
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById<ImageView>(R.id.beer_image_cart)
         val name: TextView = itemView.findViewById<TextView>(R.id.product_cart_name)

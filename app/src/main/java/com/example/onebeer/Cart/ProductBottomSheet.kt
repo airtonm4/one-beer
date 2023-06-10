@@ -90,7 +90,7 @@ class ProductBottomSheet(private val beer: Beer) : BottomSheetDialogFragment() {
                         db.collection("shop")
                             .add(
                                 hashMapOf(
-                                    "userId" to currentUser!!.uid,
+                                    "userId" to currentUser.uid,
                                     "beerId" to this.beer.id,
                                     "quantity" to this.counter
                                 )
@@ -108,7 +108,7 @@ class ProductBottomSheet(private val beer: Beer) : BottomSheetDialogFragment() {
                                 .update(
                                     hashMapOf(
                                         "beerId" to shop["beerId"],
-                                        "userId" to currentUser!!.uid,
+                                        "userId" to currentUser.uid,
                                         "quantity" to this.counter
                                     ) as Map<String, Any>
                                 ).addOnCompleteListener {

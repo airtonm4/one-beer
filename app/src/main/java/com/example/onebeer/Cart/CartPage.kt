@@ -6,11 +6,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.onebeer.BeerCarousel.Beer
 import com.example.onebeer.Cart.CartRecycle.CartAdapter
 import com.example.onebeer.Cart.CartRecycle.ItemClickListener
+import com.example.onebeer.Cart.CartRecycle.Shop
 import com.example.onebeer.databinding.CartPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -24,6 +26,9 @@ class CartPage : Fragment(){
     private lateinit var auth: FirebaseAuth
 
     private var beers: ArrayList<Beer> = ArrayList()
+    private var shops: ArrayList<Shop> = ArrayList()
+
+    private lateinit var cartAdapter: CartAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,6 +77,9 @@ class CartPage : Fragment(){
             .addOnSuccessListener { shop ->
 
                 shop.forEach { shopItem ->
+                    this.shops.add(Shop(shopItem.id,shopItem["beerId"] as String,
+                        shopItem["quantity"] as Long, shopItem["userId"] as String
+                    ))
                     /**
                      * Request para pegar todas as cervejas presentes nessa compra.
                      */
@@ -95,13 +103,40 @@ class CartPage : Fragment(){
                             Log.d("QUANTITY", "${shopItem["quantity"]}")
                             total += beer["price"] as Double * shopItem["quantity"] as Long
                             binding.totalPrice.text = "R$ " + "%.2f".format(total)
-                            binding.cartRecycler.adapter = context?.let { CartAdapter(this.beers, it, incrementListener) }
+
+                            cartAdapter = context?.let { CartAdapter(this.beers, it, incrementListener) }!!
+                            binding.cartRecycler.adapter =  cartAdapter
                         }
                 }
             }
             .addOnFailureListener { exception ->
                 Log.w("[ERROR]", "Error getting beers: ", exception)
             }
+
+        /**
+         * Fazendo a compra e colocando ela na coleção de histórico.
+         */
+        binding.buyButton.setOnClickListener {
+            this.shops.forEach { shop ->
+                db.collection("historic")
+                    .add(hashMapOf(
+                        "shopId" to this.shops[0].shopId,
+                        "beerId" to shop.productId,
+                        "userId" to shop.userId,
+                        "quantity" to shop.quantity
+                    ))
+                    .addOnCompleteListener {
+                        db.collection("shop")
+                            .document(shop.shopId)
+                            .delete().addOnSuccessListener {
+                                this.beers.removeIf { beer -> beer.id == shop.productId }
+                                cartAdapter = context?.let { CartAdapter(this.beers, it, incrementListener) }!!
+                                binding.cartRecycler.adapter =  cartAdapter
+                            }
+                    }
+            }
+            Toast.makeText(context, "Obrigado pela a compra.", Toast.LENGTH_LONG).show()
+        }
 
         binding.cartRecycler.setOnScrollChangeListener { view, i, i2, i3, i4 ->
             if (!binding.cartRecycler.canScrollVertically(1)){
