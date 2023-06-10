@@ -97,6 +97,7 @@
                 android:clickable="true"
                 android:focusable="true"/>
             <TextView
+                android:id="@+id/beer_quantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
