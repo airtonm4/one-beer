@@ -48,10 +48,12 @@ class ProductBottomSheet(private val beer: Beer) : BottomSheetDialogFragment() {
         }
 
         storage.downloadUrl.addOnSuccessListener { uri ->
-            Glide.with(this)
-                .load(uri)
-                .placeholder(circularProgressDrawable)
-                .into(binding.productImage)
+            context?.let {
+                Glide.with(it)
+                    .load(uri)
+                    .placeholder(circularProgressDrawable)
+                    .into(binding.productImage)
+            }
         }
 
         binding.productTitle.text = beer.title

@@ -150,7 +150,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/help_24"
-            android:text="Ajuda"
+            android:text="Sobre"
             android:paddingStart="20dp"
             android:drawableTint="@color/gray_profile"
             android:textAlignment="viewStart"
