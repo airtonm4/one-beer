@@ -1,4 +1,4 @@
-package com.example.onebeer.Profile
+package com.example.onebeer.Profile.About
 
 import android.annotation.SuppressLint
 import android.os.Bundle

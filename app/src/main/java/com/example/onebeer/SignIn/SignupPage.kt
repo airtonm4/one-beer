@@ -16,6 +16,7 @@ import com.example.onebeer.databinding.SingupPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SignupPage: Fragment() {
@@ -34,7 +35,6 @@ class SignupPage: Fragment() {
         auth = Firebase.auth
         _binding = SingupPageBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +46,6 @@ class SignupPage: Fragment() {
             val password = binding.singUpPassword.text.toString()
 
             var errorsCount = 0
-
             /**
              * Validando se todos os campos foram preenchidos.
              */
@@ -62,7 +61,6 @@ class SignupPage: Fragment() {
                 errorsCount++
                 binding.singUpPassword.error = "Preencha sua senha."
             }
-
             /**
              * Caso um não tenha sido preenchido não realiza as request de auth.
              */
@@ -73,6 +71,7 @@ class SignupPage: Fragment() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener { singup ->
                         if (singup.isSuccessful){
+                            val db = Firebase.firestore
                             /**
                              * Com o Sign Up sendo sucedido, podemos tentar realizar o login de forma imediata.
                              */
@@ -86,18 +85,32 @@ class SignupPage: Fragment() {
                                         user!!.updateProfile(userProfileChangeRequest {
                                             displayName = name
                                         })
-
                                         /**
-                                         * BYPASS TO CONSULTANT HOME
+                                         * Adicionar os atributos para o usuário.
                                          */
-                                        if (email == "airton.martins@estudante.ifgoiano.edu.br"){
-                                            startActivity(Intent(context, ConsultantHomeActivity::class.java))
-                                            Log.d("WELCOME", "Bem vindo Airton.")
-                                        } else {
-                                            startActivity(Intent(context, HomeActivity::class.java))
-                                            Log.d("Sing Up", "User created and auth")
-                                        }
-
+                                        db.collection("users")
+                                            .add(
+                                                hashMapOf(
+                                                    "userId" to user.uid,
+                                                    "type" to "customer",
+                                                    "name" to name
+                                                )
+                                            )
+                                        /**
+                                         * Checa se o usuário é admin ou não.
+                                         */
+                                        db.collection("users")
+                                            .whereEqualTo("userId", user.uid)
+                                            .get()
+                                            .addOnSuccessListener {userRetrieved ->
+                                                userRetrieved.forEach { checkUser ->
+                                                    if (checkUser["type"] == "admin"){
+                                                        startActivity(Intent(context, ConsultantHomeActivity::class.java))
+                                                    } else {
+                                                        startActivity(Intent(context, HomeActivity::class.java))
+                                                    }
+                                                }
+                                            }
                                     } else {
                                         Log.d("Sing Up", "User created, but login fails.")
                                         findNavController().navigate(R.id.action_sign_up_to_login)

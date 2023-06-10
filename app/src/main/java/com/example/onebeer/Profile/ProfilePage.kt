@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.onebeer.MainActivity
+import com.example.onebeer.Profile.About.AboutPage
+import com.example.onebeer.Profile.Historic.HistoricPage
 import com.example.onebeer.R
 import com.example.onebeer.databinding.ProfilePageBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -43,6 +45,14 @@ class ProfilePage: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.historicButton.setOnClickListener {
+            val historicPage = HistoricPage()
+            requireActivity().supportFragmentManager.commit {
+                replace(R.id.container, historicPage, "HistoricPage")
+                    .addToBackStack(null)
+            }
+        }
 
         binding.aboutButton.setOnClickListener {
             val aboutPage = AboutPage()

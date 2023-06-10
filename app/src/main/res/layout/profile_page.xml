@@ -80,13 +80,13 @@
             android:paddingHorizontal="10dp">
 
         <Button
-            android:id="@+id/data_button"
+            android:id="@+id/historic_button"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/cloud_download_24"
+            android:drawableLeft="@drawable/historic_24"
             android:drawableTint="@color/gray_profile"
-            android:text="Meus Dados"
+            android:text="Histórico de compras"
             android:paddingStart="20dp"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Display3"
