@@ -29,10 +29,22 @@ class MarketPage: Fragment() {
         auth = Firebase.auth
         _binding = MarketPageBinding.inflate(inflater, container, false)
 
-        val carouselManager = LinearLayoutManager(context)
-        carouselManager.orientation = LinearLayoutManager.HORIZONTAL
+        val carouselIpaManager = LinearLayoutManager(context)
+        carouselIpaManager.orientation = LinearLayoutManager.HORIZONTAL
 
-        binding.beerCarousel.layoutManager = carouselManager
+        val carouselApaManager = LinearLayoutManager(context)
+        carouselApaManager.orientation = LinearLayoutManager.HORIZONTAL
+
+        val carouselUnknowManager = LinearLayoutManager(context)
+        carouselUnknowManager.orientation = LinearLayoutManager.HORIZONTAL
+
+        val carouselPilsenManager = LinearLayoutManager(context)
+        carouselPilsenManager.orientation = LinearLayoutManager.HORIZONTAL
+
+        binding.beerCarouselIpa.layoutManager = carouselIpaManager
+        binding.beerCarouselApa.layoutManager = carouselApaManager
+        binding.beerCarouselPilsen.layoutManager = carouselPilsenManager
+        binding.beerCarouselUnknow.layoutManager = carouselUnknowManager
 
         return binding.root
     }
@@ -59,9 +71,55 @@ class MarketPage: Fragment() {
                         quantity = null
                     ))
                 }
-                binding.beerCarousel.adapter = context?.let { CarouselAdapter(data, it) }
+                binding.beerCarouselIpa.adapter = context?.let { CarouselAdapter(data, it) }
             }
             .addOnFailureListener { exception ->
+                Log.w("[ERROR]", "Error getting beers: ", exception)
+            }
+
+        db.collection("beers")
+            .whereEqualTo("style", "APA")
+            .get()
+            .addOnSuccessListener {beers ->
+                val data: ArrayList<Beer> = ArrayList()
+                beers.forEach { beer ->
+                    data.add(Beer(
+                        id = beer.id,
+                        title = beer["title"] as String,
+                        price = beer["price"] as Double,
+                        ml = beer["ml"] as String,
+                        style = beer["style"] as String,
+                        description = beer["description"] as String,
+                        imageUrl = beer["imageUrl"] as String,
+                        quantity = null
+                    ))
+                }
+                binding.beerCarouselApa.adapter = context?.let { CarouselAdapter(data, it) }
+            }
+            .addOnFailureListener {exception ->
+                Log.w("[ERROR]", "Error getting beers: ", exception)
+            }
+
+        db.collection("beers")
+            .whereEqualTo("style", "unknow")
+            .get()
+            .addOnSuccessListener { beers ->
+                val data: ArrayList<Beer> = ArrayList()
+                beers.forEach { beer ->
+                    data.add(Beer(
+                        id = beer.id,
+                        title = beer["title"] as String,
+                        price = beer["price"] as Double,
+                        ml = beer["ml"] as String,
+                        style = beer["style"] as String,
+                        description = beer["description"] as String,
+                        imageUrl = beer["imageUrl"] as String,
+                        quantity = null
+                    ))
+                }
+                binding.beerCarouselUnknow.adapter = context?.let { CarouselAdapter(data, it) }
+            }
+            .addOnFailureListener {exception ->
                 Log.w("[ERROR]", "Error getting beers: ", exception)
             }
     }

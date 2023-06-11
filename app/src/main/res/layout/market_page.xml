@@ -35,7 +35,61 @@
             tools:ignore="RtlSymmetry" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/beer_carousel"
+            android:id="@+id/beer_carousel_ipa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingBottom="30dp"
+            android:text="Cervejas APA"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_bold"
+            android:textSize="28sp"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/beer_carousel_apa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingBottom="30dp"
+            android:text="Cervejas APA"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_bold"
+            android:textSize="28sp"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/beer_carousel_pilsen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingBottom="30dp"
+            android:text="Outras cervejas"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_bold"
+            android:textSize="28sp"
+            tools:ignore="RtlSymmetry" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/beer_carousel_unknow"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipChildren="false"
