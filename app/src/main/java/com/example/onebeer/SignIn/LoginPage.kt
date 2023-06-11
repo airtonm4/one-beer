@@ -15,6 +15,7 @@ import com.example.onebeer.R
 import com.example.onebeer.databinding.LoginPageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class LoginPage : Fragment() {
@@ -61,12 +62,23 @@ class LoginPage : Fragment() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful){
+                            val db = Firebase.firestore
                             Log.d("logInWithEmail:", "success")
-                            if (email == "airton.martins@estudante.ifgoiano.edu.br"){
-                                startActivity(Intent(context, ConsultantHomeActivity::class.java))
-                            } else {
-                                startActivity(Intent(context, HomeActivity::class.java))
-                            }
+                            /**
+                             * Checa se o usuário é admin ou não.
+                             */
+                            db.collection("users")
+                                .whereEqualTo("userId", auth.currentUser!!.uid)
+                                .get()
+                                .addOnSuccessListener {userRetrieved ->
+                                    userRetrieved.forEach { checkUser ->
+                                        if (checkUser["type"] == "admin"){
+                                            startActivity(Intent(context, ConsultantHomeActivity::class.java))
+                                        } else {
+                                            startActivity(Intent(context, HomeActivity::class.java))
+                                        }
+                                    }
+                                }
                         } else {
                             Log.d("signInWithEmail:", "not success")
                             Toast.makeText(
