@@ -1,35 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/about_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:buttonGravity="center_vertical"
-                style="@style/Widget.AppCompat.Toolbar"
-                app:title="Sobre"
-                app:titleTextColor="@color/black" />
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/about_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:buttonGravity="center_vertical"
+        style="@style/Widget.AppCompat.Toolbar"
+        app:title="Segurança"
+        app:titleTextColor="@color/black" />
 
-            <TextView
-                android:id="@+id/textview_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="@string/sobre"
-                android:textColor="@color/highlight_text_gray"
-                android:textSize="16sp" />
+    <TextView
+        android:id="@+id/textview_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Nome de usuário"
+        android:textColor="@color/highlight_text_gray"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/username_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Airton"
+        android:textColor="@color/highlight_text_gray"
+        android:textSize="32sp" />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/alter_edit_text"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:hint="Nome desejado"
+        android:textAlignment="textStart"
+        android:textColorHint="@color/primary_green"
+        android:background="@drawable/input_stroke"
+        android:paddingStart="20dp"
+        android:fontFamily="@font/inter_medium"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        tools:ignore="RtlCompat,RtlSymmetry" />
+
+    <Button
+        android:id="@+id/alter_name_button"
+        android:layout_width="249dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/primary_green"
+        android:fontFamily="@font/inter_medium"
+        android:layout_gravity="center"
+        android:text="Alterar nome"
+        android:textSize="19sp"
+        android:layout_marginStart="10dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="256dp">
+        android:layout_marginTop="150dp">
 
         <TextView
             android:id="@+id/textViewOn"
@@ -75,7 +115,8 @@
                 android:layout_height="150dp"
                 android:cropToPadding="false"
                 android:scaleType="centerCrop"
-                app:srcCompat="@mipmap/there_only_beer_left_foreground" />
+                app:srcCompat="@mipmap/there_only_beer_left_foreground"
+                android:contentDescription="TODO" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,7 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.onebeer.MainActivity
 import com.example.onebeer.Profile.About.AboutPage
+import com.example.onebeer.Profile.Config.ConfigPage
 import com.example.onebeer.Profile.Historic.HistoricPage
+import com.example.onebeer.Profile.Security.SecurityPage
 import com.example.onebeer.R
 import com.example.onebeer.databinding.ProfilePageBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -50,6 +52,22 @@ class ProfilePage: Fragment() {
             val historicPage = HistoricPage()
             requireActivity().supportFragmentManager.commit {
                 replace(R.id.container, historicPage, "HistoricPage")
+                    .addToBackStack(null)
+            }
+        }
+
+        binding.securityButton.setOnClickListener {
+            val securityPage = SecurityPage()
+            requireActivity().supportFragmentManager.commit {
+                replace(R.id.container, securityPage, "HistoricPage")
+                    .addToBackStack(null)
+            }
+        }
+
+        binding.configButton.setOnClickListener {
+            val configPage = ConfigPage()
+            requireActivity().supportFragmentManager.commit {
+                replace(R.id.container, configPage, "HistoricPage")
                     .addToBackStack(null)
             }
         }

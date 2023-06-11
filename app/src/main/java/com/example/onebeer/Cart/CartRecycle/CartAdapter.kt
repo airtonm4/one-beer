@@ -81,7 +81,6 @@ class CartAdapter(private val dataSet: ArrayList<Beer>, private val context: Con
                     }
                 }
         }
-
         /**
          * ClickListener para atualizar a quantidade de produtos e para atualizar o preço
          * na página de carrinho.
@@ -91,7 +90,6 @@ class CartAdapter(private val dataSet: ArrayList<Beer>, private val context: Con
             incrementListener.onItemClicked(holder, this.dataSet, position)
             notifyItemChanged(position)
         }
-
         /**
          * ClickListener para atualizar a quantidade de produtos e para atualizar o preço
          * na página de carrinho.

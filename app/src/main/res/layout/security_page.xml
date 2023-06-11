@@ -5,26 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/about_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:buttonGravity="center_vertical"
-                style="@style/Widget.AppCompat.Toolbar"
-                app:title="Sobre"
-                app:titleTextColor="@color/black" />
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/about_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:buttonGravity="center_vertical"
+        style="@style/Widget.AppCompat.Toolbar"
+        app:title="Segurança"
+        app:titleTextColor="@color/black" />
 
-            <TextView
-                android:id="@+id/textview_first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="@string/sobre"
-                android:textColor="@color/highlight_text_gray"
-                android:textSize="16sp" />
+    <TextView
+        android:id="@+id/textview_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="@string/segurança"
+        android:textColor="@color/highlight_text_gray"
+        android:textSize="16sp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -75,7 +75,8 @@
                 android:layout_height="150dp"
                 android:cropToPadding="false"
                 android:scaleType="centerCrop"
-                app:srcCompat="@mipmap/there_only_beer_left_foreground" />
+                app:srcCompat="@mipmap/there_only_beer_left_foreground"
+                android:contentDescription="TODO" />
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

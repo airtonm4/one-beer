@@ -88,7 +88,6 @@ class CartPage : Fragment(){
                         .document(shopItem["beerId"] as String)
                         .get()
                         .addOnSuccessListener { beer ->
-                            Log.d("BEER", "DATA -> ${beer.data}")
                             this.beers.add(Beer(
                                 id = beer.id,
                                 title = beer["title"] as String,
@@ -99,8 +98,6 @@ class CartPage : Fragment(){
                                 imageUrl = beer["imageUrl"] as String,
                                 quantity = shopItem["quantity"] as Long
                             ))
-                            Log.d("PRICE", "${beer["price"]}")
-                            Log.d("QUANTITY", "${shopItem["quantity"]}")
                             total += beer["price"] as Double * shopItem["quantity"] as Long
                             binding.totalPrice.text = "R$ " + "%.2f".format(total)
 
@@ -123,7 +120,8 @@ class CartPage : Fragment(){
                         "shopId" to this.shops[0].shopId,
                         "beerId" to shop.productId,
                         "userId" to shop.userId,
-                        "quantity" to shop.quantity
+                        "quantity" to shop.quantity,
+                        "total" to total
                     ))
                     .addOnCompleteListener {
                         db.collection("shop")
