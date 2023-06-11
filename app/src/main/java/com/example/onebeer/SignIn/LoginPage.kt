@@ -57,7 +57,9 @@ class LoginPage : Fragment() {
                 errorsCount++
                 binding.loginPassword.error = "Preencha sua senha."
             }
-
+            /**
+             * Realiza logins caso não tenha erros.
+             */
             if (errorsCount == 0){
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener { task ->

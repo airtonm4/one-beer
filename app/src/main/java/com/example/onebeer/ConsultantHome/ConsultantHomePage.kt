@@ -43,6 +43,7 @@ class ConsultantHomePage: Fragment() {
 
         val incrementListener: ItemClickListener = object : ItemClickListener {
             override fun onItemClicked(vh: CartAdapter.ViewHolder?, dataSet: ArrayList<Beer>?, pos: Int) {
+
             }
         }
 

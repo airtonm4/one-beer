@@ -34,6 +34,9 @@ class LandingPage : Fragment(){
 
         val user = auth.currentUser
 
+        /**
+         * Auto-login
+         */
         if (user != null) {
             val db = Firebase.firestore
             /**

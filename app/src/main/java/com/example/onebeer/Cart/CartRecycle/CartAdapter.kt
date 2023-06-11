@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -68,16 +69,41 @@ class CartAdapter(private val dataSet: ArrayList<Beer>, private val context: Con
          * na página de carrinho.
          */
         holder.deleteButton.setOnClickListener {
-            db.collection("shop")
-                .whereEqualTo("userId", currentUser!!.uid)
-                .whereEqualTo("beerId", dataSet.id)
+            var userType: String;
+            db.collection("users")
+                .whereEqualTo("userId", Firebase.auth.currentUser!!.uid)
                 .get()
-                .addOnSuccessListener { shops ->
-                    shops.forEach { shop ->
-                        shop.reference.delete()
-                        this.dataSet.removeAt(position)
-                        incrementListener.onItemClicked(holder, this.dataSet, position)
-                        notifyItemRemoved(position)
+                .addOnSuccessListener {
+                    it.forEach { user ->
+                        userType = user["type"] as String
+                    }
+
+                    /**
+                     * Checa se é admin, caso seja deleta a cerveja.
+                     * Caso não seja faz assim como comprador e remove a cerveja do carrinho.
+                     */
+                    if (it.documents[0]["type"].toString() == "admin"){
+                        db.collection("beers")
+                            .document(dataSet.id)
+                            .delete()
+                            .addOnSuccessListener {
+                                Toast.makeText(context, "Produto deletado.", Toast.LENGTH_LONG).show()
+                                this.dataSet.removeAt(position)
+                                notifyItemRemoved(position)
+                            }
+                    } else {
+                        db.collection("shop")
+                            .whereEqualTo("userId", currentUser!!.uid)
+                            .whereEqualTo("beerId", dataSet.id)
+                            .get()
+                            .addOnSuccessListener { shops ->
+                                shops.forEach { shop ->
+                                    shop.reference.delete()
+                                    this.dataSet.removeAt(position)
+                                    incrementListener.onItemClicked(holder, this.dataSet, position)
+                                    notifyItemRemoved(position)
+                                }
+                            }
                     }
                 }
         }
@@ -86,16 +112,18 @@ class CartAdapter(private val dataSet: ArrayList<Beer>, private val context: Con
          * na página de carrinho.
          */
         holder.incrementButton.setOnClickListener {
-            dataSet.quantity = dataSet.quantity!! + 1
-            incrementListener.onItemClicked(holder, this.dataSet, position)
-            notifyItemChanged(position)
+            if (dataSet.quantity != null){
+                dataSet.quantity = dataSet.quantity!! + 1
+                incrementListener.onItemClicked(holder, this.dataSet, position)
+                notifyItemChanged(position)
+            }
         }
         /**
          * ClickListener para atualizar a quantidade de produtos e para atualizar o preço
          * na página de carrinho.
          */
         holder.decrementButton.setOnClickListener {
-            if (dataSet.quantity!! > 1){
+            if (dataSet.quantity != null && dataSet.quantity!! > 1){
                 dataSet.quantity = dataSet.quantity!! - 1
                 incrementListener.onItemClicked(holder, this.dataSet, position)
                 notifyItemChanged(position)
