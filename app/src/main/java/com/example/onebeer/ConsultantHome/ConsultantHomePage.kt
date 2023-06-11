@@ -34,6 +34,8 @@ class ConsultantHomePage: Fragment() {
 
         binding.beersRecycle.layoutManager = carouselManager
 
+        binding.beersRecycle.setScrollingTouchSlop(0)
+
         return binding.root
 
     }
@@ -50,7 +52,6 @@ class ConsultantHomePage: Fragment() {
         val db = Firebase.firestore
 
         db.collection("beers")
-            .limit(6)
             .get()
             .addOnSuccessListener { beers ->
                 val data: ArrayList<Beer> = ArrayList()

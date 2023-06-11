@@ -11,6 +11,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.example.onebeer.BeerCarousel.Beer
 import com.example.onebeer.BeerCarousel.CarouselAdapter
+import com.example.onebeer.Cart.ProductBottomSheet
 import com.example.onebeer.databinding.HomePageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -24,6 +25,7 @@ class HomePage: Fragment() {
     private var _binding: HomePageBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
+    private lateinit var olariaData: Beer
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -44,6 +46,7 @@ class HomePage: Fragment() {
 
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -76,6 +79,17 @@ class HomePage: Fragment() {
                 binding.cardDescription.text = beer["description"] as String
                 binding.cardMl.text = beer["ml"] as String
                 binding.cardPrice.text = "R$ ${beer["price"]}"
+
+                this.olariaData = Beer(
+                    id = beer.id,
+                    title = beer["title"] as String,
+                    price = beer["price"] as Double,
+                    ml = beer["ml"] as String,
+                    style = beer["style"] as String,
+                    description = beer["description"] as String,
+                    imageUrl = beer["imageUrl"] as String,
+                    quantity = null
+                )
             }
 
         db.collection("beers")
@@ -97,5 +111,11 @@ class HomePage: Fragment() {
                 }
                 binding.beerCarousel.adapter = context?.let { CarouselAdapter(data, it) }
             }
+
+        binding.cardImage.setOnClickListener {
+            val modalBottomSheet = ProductBottomSheet(olariaData)
+            val ft = (context as HomeActivity).supportFragmentManager.beginTransaction()
+            modalBottomSheet.show(ft, ProductBottomSheet.TAG)
+        }
     }
 }

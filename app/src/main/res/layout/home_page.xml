@@ -35,6 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
+                android:focusable="true"
+                android:clickable="true"
                 app:srcCompat="@mipmap/baden_ipa_foreground" />
             <TextView
                 android:id="@+id/card_title"

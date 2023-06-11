@@ -101,6 +101,29 @@ class MarketPage: Fragment() {
             }
 
         db.collection("beers")
+            .whereEqualTo("style", "PILSEN")
+            .get()
+            .addOnSuccessListener {beers ->
+                val data: ArrayList<Beer> = ArrayList()
+                beers.forEach { beer ->
+                    data.add(Beer(
+                        id = beer.id,
+                        title = beer["title"] as String,
+                        price = beer["price"] as Double,
+                        ml = beer["ml"] as String,
+                        style = beer["style"] as String,
+                        description = beer["description"] as String,
+                        imageUrl = beer["imageUrl"] as String,
+                        quantity = null
+                    ))
+                }
+                binding.beerCarouselPilsen.adapter = context?.let { CarouselAdapter(data, it) }
+            }
+            .addOnFailureListener {exception ->
+                Log.w("[ERROR]", "Error getting beers: ", exception)
+            }
+
+        db.collection("beers")
             .whereEqualTo("style", "unknow")
             .get()
             .addOnSuccessListener { beers ->
