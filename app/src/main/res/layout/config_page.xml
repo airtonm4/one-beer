@@ -12,7 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         app:buttonGravity="center_vertical"
         style="@style/Widget.AppCompat.Toolbar"
-        app:title="Segurança"
+        app:title="Configurações"
         app:titleTextColor="@color/black" />
 
     <TextView
