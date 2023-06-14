@@ -26,18 +26,24 @@ class HomeActivity: AppCompatActivity() {
         auth = Firebase.auth
 
         binding = ActivityHomeBinding.inflate(layoutInflater)
-
-        // Arrumando estilos da NavigationBottomBar
+        /**
+         * Arrumando estilos na BottomAppBar.
+         */
         binding.bottomAppBar.setOnApplyWindowInsetsListener(null)
         binding.bottomAppBar.setPadding(0)
 
         setContentView(binding.root)
 
+        /**
+         * Iniciando o fragment padrão que é a HomePage.
+         */
         supportFragmentManager.commit {
             val homePage = HomePage()
             replace(R.id.container, homePage)
         }
-
+        /**
+         * Realizando o controle dos fragmentos.
+         */
         binding.bottomAppBar.setOnItemSelectedListener {item ->
             when(item.itemId){
                 R.id.home_page -> {

@@ -30,7 +30,9 @@ class CarouselAdapter(private val dataSet: ArrayList<Beer>, private val context:
         holder.title.text = dataSet.title
         holder.price.text = "R$ " + dataSet.price.toString()
         holder.ml.text = dataSet.ml
-
+        /**
+         * Setando o circular loading na imagem.
+         */
         val circularProgressDrawable = CircularProgressDrawable(context)
         circularProgressDrawable.strokeWidth = 8f
         circularProgressDrawable.centerRadius = 30f
@@ -40,7 +42,9 @@ class CarouselAdapter(private val dataSet: ArrayList<Beer>, private val context:
         val imageView = holder.image
 
         imageView.setImageDrawable(circularProgressDrawable)
-
+        /**
+         * Faz o download e atribui a imagem ao ImageView.
+         */
         storage.downloadUrl.addOnSuccessListener { uri ->
 
             Glide.with(context)
@@ -48,7 +52,9 @@ class CarouselAdapter(private val dataSet: ArrayList<Beer>, private val context:
                 .placeholder(circularProgressDrawable)
                 .into(imageView)
         }
-
+        /**
+         * Abre o modal do produto ao clicar em um item no Carrossel.
+         */
         holder.itemView.setOnClickListener {
             val modalBottomSheet = ProductBottomSheet(dataSet)
             val ft = (context as HomeActivity).supportFragmentManager.beginTransaction()

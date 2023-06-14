@@ -48,6 +48,10 @@ class ProfilePage: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /**
+         * De acordo com o botão selecionado ele vai trocar o fragment ou então vai deslogar
+         * o usuário e o enviar para 
+         */
         binding.historicButton.setOnClickListener {
             val historicPage = HistoricPage()
             requireActivity().supportFragmentManager.commit {

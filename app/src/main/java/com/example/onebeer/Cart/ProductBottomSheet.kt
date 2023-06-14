@@ -38,7 +38,9 @@ class ProductBottomSheet(private val beer: Beer) : BottomSheetDialogFragment() {
         val storage = Firebase.storage.getReferenceFromUrl(beer.imageUrl)
         val db = Firebase.firestore
         val currentUser = Firebase.auth.currentUser
-
+        /**
+         * Define o drawable de Circular Loading.
+         */
         val circularProgressDrawable = this.context?.let { CircularProgressDrawable(it) }
         if (circularProgressDrawable != null) {
             circularProgressDrawable.strokeWidth = 8f
@@ -46,7 +48,9 @@ class ProductBottomSheet(private val beer: Beer) : BottomSheetDialogFragment() {
             circularProgressDrawable.start()
             binding.productImage.setImageDrawable(circularProgressDrawable)
         }
-
+        /**
+         * Realiza o download da imagem do produto e o adiciona na ImageView quando concluido.
+         */
         storage.downloadUrl.addOnSuccessListener { uri ->
             context?.let {
                 Glide.with(it)
@@ -55,20 +59,26 @@ class ProductBottomSheet(private val beer: Beer) : BottomSheetDialogFragment() {
                     .into(binding.productImage)
             }
         }
-
+        /**
+         * Insere os dados do produto,
+         */
         binding.productTitle.text = beer.title
         binding.productMl.text = beer.ml
         binding.productDescription.text = beer.description
         binding.productPrice.text = "R$ ${beer.price}"
         binding.addProduct.text = "Adicionar R$ ${beer.price}"
         binding.countText.text = counter.toString()
-
+        /**
+         * Atualiza o preço da compra desse produto.
+         */
         binding.incrementButton.setOnClickListener {
             this.counter++
             binding.countText.text = counter.toString()
             binding.addProduct.text = "Adicionar  R$ ${"%.2f".format(beer.price*counter)}"
         }
-
+        /**
+         * Atualiza o preço da compra desse produto.
+         */
         binding.decrementButton.setOnClickListener {
             if (counter > 1){
                 this.counter--
@@ -76,7 +86,9 @@ class ProductBottomSheet(private val beer: Beer) : BottomSheetDialogFragment() {
                 binding.addProduct.text = "Adicionar  R$ ${"%.2f".format(beer.price*counter)}"
             }
         }
-
+        /**
+         * Ao clicar no botão de adicionar produto, realiza a requisição para adicionar o produto no carrinho do usuário.
+         */
         binding.addProduct.setOnClickListener {
             db.collection("shop")
                 .whereEqualTo("userId", currentUser!!.uid)

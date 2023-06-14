@@ -51,6 +51,9 @@ class ConsultantHomePage: Fragment() {
 
         val db = Firebase.firestore
 
+        /**
+         * Buscando todas as cervejas.
+         */
         db.collection("beers")
             .get()
             .addOnSuccessListener { beers ->

@@ -53,7 +53,9 @@ class MarketPage: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val db = Firebase.firestore
-
+        /**
+         * Busca por cervejas do estilo IPA.
+         */
         db.collection("beers")
             .whereEqualTo("style", "IPA")
             .get()
@@ -76,7 +78,9 @@ class MarketPage: Fragment() {
             .addOnFailureListener { exception ->
                 Log.w("[ERROR]", "Error getting beers: ", exception)
             }
-
+        /**
+         * Busca por cervejas do estilo APA.
+         */
         db.collection("beers")
             .whereEqualTo("style", "APA")
             .get()
@@ -99,7 +103,9 @@ class MarketPage: Fragment() {
             .addOnFailureListener {exception ->
                 Log.w("[ERROR]", "Error getting beers: ", exception)
             }
-
+        /**
+         * Busca por cervejas do estilo PILSEN.
+         */
         db.collection("beers")
             .whereEqualTo("style", "PILSEN")
             .get()
@@ -122,7 +128,9 @@ class MarketPage: Fragment() {
             .addOnFailureListener {exception ->
                 Log.w("[ERROR]", "Error getting beers: ", exception)
             }
-
+        /**
+         * Busca por cervejas que não possuem um estilo cadastrado na aplicação.
+         */
         db.collection("beers")
             .whereEqualTo("style", "unknow")
             .get()

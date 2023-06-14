@@ -34,7 +34,9 @@ class AddProductBottomSheet : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        /**
+         * Inicia o Intent para possibilitar o usuário de pegar uma imagem da galeria.
+         */
         binding.beerImageAdd.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             intent.apply {
@@ -43,7 +45,9 @@ class AddProductBottomSheet : BottomSheetDialogFragment() {
             }
             startActivityForResult(intent, 1000)
         }
-
+        /**
+         * Adiciona o produto ao catalogo.
+         */
         binding.buttonAddBeer.setOnClickListener {
             val nameBeer = binding.beerName
             val priceBeer = binding.beerPrice
@@ -90,7 +94,9 @@ class AddProductBottomSheet : BottomSheetDialogFragment() {
 
                 val pathString = "beers/${nameBeer.text.toString() + style.text.toString() + ml.text.toString()}"
                 val imageReference = storage.reference.child(pathString)
-
+                /**
+                 * Envia a imagem para o storage.
+                 */
                 imageReference.putFile(this.imageUri).addOnCompleteListener {
                     Log.d("PATH", imageReference.path)
                     val circularProgressDrawable = this.context?.let { CircularProgressDrawable(it) }
@@ -100,7 +106,9 @@ class AddProductBottomSheet : BottomSheetDialogFragment() {
                         circularProgressDrawable.start()
                         image.setImageDrawable(circularProgressDrawable)
                     }
-
+                    /**
+                     * Pega a referencia da imagem no storage e atualiza ela na view.
+                     */
                     storage.getReferenceFromUrl("gs://onebeer-d6603.appspot.com/${pathString}").downloadUrl.addOnSuccessListener { uri ->
                         context?.let {
                             Glide.with(it)
@@ -109,7 +117,9 @@ class AddProductBottomSheet : BottomSheetDialogFragment() {
                                 .into(image)
                         }
                     }
-
+                    /**
+                     * Adiciona o novo produto ao catalogo.
+                     */
                     db.collection("beers")
                         .add(
                             hashMapOf(
@@ -137,7 +147,9 @@ class AddProductBottomSheet : BottomSheetDialogFragment() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
+        /**
+         * Utilizado para pegar a imagem enviada pela a galeria.
+         */
         if (requestCode == 1000){
             val returnUri = data!!.data
 

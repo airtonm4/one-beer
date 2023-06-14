@@ -59,7 +59,9 @@ class HomePage: Fragment() {
             circularProgressDrawable.start()
             binding.cardImage.setImageDrawable(circularProgressDrawable)
         }
-
+        /**
+         * Busca informação de um produto especifico
+         */
         db.collection("beers")
             .document("DNPRVCIn2r1utlG5ZbJe")
             .get()
@@ -91,7 +93,9 @@ class HomePage: Fragment() {
                     quantity = null
                 )
             }
-
+        /**
+         * Busca seis produtos aleatorios para compor o carousel.
+         */
         db.collection("beers")
             .limit(6)
             .get()
@@ -111,7 +115,9 @@ class HomePage: Fragment() {
                 }
                 binding.beerCarousel.adapter = context?.let { CarouselAdapter(data, it) }
             }
-
+        /**
+         * Abre modal para adicionar novo produto ao carrinho quando clicado na imagem do produto destacado.
+         */
         binding.cardImage.setOnClickListener {
             val modalBottomSheet = ProductBottomSheet(olariaData)
             val ft = (context as HomeActivity).supportFragmentManager.beginTransaction()

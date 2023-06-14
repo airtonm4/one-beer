@@ -45,7 +45,7 @@ class LandingPage : Fragment(){
             db.collection("users")
                 .whereEqualTo("userId", user.uid)
                 .get()
-                .addOnSuccessListener {userRetrieved ->
+                .addOnSuccessListener { userRetrieved ->
                     userRetrieved.forEach { checkUser ->
                         if (checkUser["type"] == "admin"){
                             startActivity(Intent(context, ConsultantHomeActivity::class.java))

@@ -18,12 +18,16 @@ class ConsultantHomeActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
-
+        /**
+         * Iniciando o fragment.
+         */
         supportFragmentManager.commit {
             val homePage = ConsultantHomePage()
             replace(R.id.container, homePage)
         }
-
+        /**
+         * Configurando o floating button.
+         */
         binding.floatingActionButton.setOnClickListener {
             val modalBottomSheet = AddProductBottomSheet()
             val ft = this.supportFragmentManager.beginTransaction()

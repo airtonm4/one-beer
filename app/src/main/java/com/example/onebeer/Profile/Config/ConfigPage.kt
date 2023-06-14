@@ -52,11 +52,15 @@ class ConfigPage: Fragment() {
             } else {
                 val db = Firebase.firestore
                 val user = Firebase.auth.currentUser
-
+                /**
+                 * Realiza o update do nome de usuário no Firebase Authenticator
+                 */
                 user!!.updateProfile(userProfileChangeRequest {
                     displayName = alterNameTextView.text.toString()
                 })
-
+                /**
+                 * Realiza o update do nome do usuário do Firestore
+                 */
                 db.collection("users")
                     .whereEqualTo("userId", user.uid)
                     .get()
